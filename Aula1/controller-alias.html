@@ -1,0 +1,9 @@
+<script>
+app.controller('AliasCtrl', function() {
+    this.msg = 'Mensagem do escopo';
+});
+</script>
+
+<div ng-controller="AliasCtrl as alias">
+    <p>{{ alias.msg }}</p>
+</div>

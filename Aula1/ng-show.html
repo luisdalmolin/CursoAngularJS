@@ -1,0 +1,7 @@
+<div ng-init="authorized = true"></div>
+    <p>A senha é: 
+    <strong ng-show="authorized">12345</strong>
+    <strong ng-hide="authorized">Você não possui permissões para visualizar a senha</strong>
+    </p>
+    <button class="btn btn-primary" ng-click="authorized = ! authorized"><span ng-if="authorized">Esconder senha</span> <span ng-if="! authorized">Exibir senha</span></button>
+</div>

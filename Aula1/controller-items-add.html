@@ -1,0 +1,27 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('ItemsCtrl', function($scope) {
+    $scope.items = [
+        'Item 1',
+        'Item 2',
+        'Item 3'
+    ];
+
+    $scope.addItem = function() {
+        $scope.items.push($scope.title);
+        $scope.title = '';
+    };
+});
+</script>
+
+<div ng-controller="ItemsCtrl">
+    <input ng-model="title" placeholder="Adicionar novo item">
+    <button class="btn btn-primary" ng-click="addItem()">Adicionar</button>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in items">
+            {{ item.title }}
+        </li>
+    </ul>
+</div>

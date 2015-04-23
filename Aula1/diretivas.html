@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJS - Diretivas</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+    	<div class="jumbotron">
+    		<h1>Diretivas</h1>
+    		<p>Estas são as diretivas que são nativas do AngularJS. Você não precisa de nenhum plugin extra pra utilizar elas.</p>
+    	</div>
+		
+		<div ng-controller="MainCtrl as main">
+			<div ng-repeat="page in pages" class="panel panel-info">
+				<div class="panel-heading">{{ page.title }}</div>
+
+				<div class="panel-body">
+					<p>{{ page.description }}</p>
+					<pre><code ng-bind="page.content | unsafe"></code></pre>
+
+					<div style="margin: 25px 0 0 0; padding: 0 0 0 30px; border-left: 6px solid #337ab7; font-size: 1.5em;" ng-include src="page.url"></div>
+				</div>
+			</div>
+		</div>
+    </div>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+	<script src="../_assets/js/code.js"></script>
+	<script>
+	(function() {
+		var app = angular.module('app', ['code']);
+
+		app.controller('MainCtrl', function($scope, $http) {
+			$scope.pages = [];
+			
+			var pages = [
+				{url: 'expression.html', description: 'Expressões básicas'},
+				{url: 'ng-show.html', description: 'Diretivas ng-show e ng-if'},
+				{url: 'ng-model.html', description: 'Diretiva ng-model'},
+				{url: 'checkbox.html', description: 'Diretivas ng-bind e ng-init'},
+				{url: 'select.html', description: 'Diretivas ng-bind, '},
+				{url: 'ng-repeat.html', description: 'Diretiva ng-repeat'},
+				{url: 'ng-class.html', description: 'Diretiva ng-class'}
+			];
+
+			angular.forEach(pages, function(page) {
+				$http.get(page.url)
+					.success(function(data) {
+						$scope.pages.push({
+							title: page.url,
+							url: page.url,
+							content: data,
+							description: page.description
+						});
+					});
+			});
+		});
+	})();
+	</script>
+</body>
+</html>

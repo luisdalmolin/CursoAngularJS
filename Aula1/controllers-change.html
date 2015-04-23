@@ -1,0 +1,20 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('ChangeCtrl', function($scope) {
+    $scope.option = '1';
+
+    $scope.onChange = function() {
+        alert($scope.option);
+    };
+});
+</script>
+
+<div ng-controller="ChangeCtrl">
+    Selecione a opção para disparar o evento: 
+    <select ng-model="option" ng-change="onChange()">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+</div>

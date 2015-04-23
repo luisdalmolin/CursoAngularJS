@@ -1,0 +1,11 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('MsgCtrl', function($scope) {
+    $scope.message = 'Mensagem do escopo';
+});
+</script>
+
+<div ng-controller="MsgCtrl">
+    <p>{{ message }}</p>
+</div>

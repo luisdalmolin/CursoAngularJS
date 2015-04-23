@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS - Controllers</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/github.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1>Controllers</h1>
+        </div>
+        
+        <div ng-controller="MainCtrl">
+            <div ng-repeat="page in pages" class="panel panel-info">
+                <div class="panel-heading">{{ page.title }}</div>
+
+                <div class="panel-body">
+                    <p>{{ page.description }}</p>
+                    <pre><code ng-bind="page.content | unsafe"></code></pre>
+
+                    <div style="margin: 25px 0 0 0; padding: 0 0 0 30px; border-left: 6px solid #337ab7; font-size: 1.5em;" ng-include src="page.url"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script src="../_assets/js/code.js"></script>
+    <script>
+    (function() {
+        var app = angular.module('app', ['code']);
+
+        app.controller('MainCtrl', function($scope, $http) {
+            $scope.pages = [];
+            
+            var pages = [
+                {url: 'controllers-model.html', description: 'Funcionalidade básica de um controller'},
+                {url: 'controllers-click.html', description: 'ng-click'},
+                {url: 'controllers-change.html', description: 'ng-change'},
+                {url: 'controller-alias.html', description: 'Funcionalidade básica de um controller (com alias)'},
+                {url: 'controller-items-add.html', description: 'ng-repeat adicionando novos items'}
+            ];
+
+            angular.forEach(pages, function(page) {
+                $http.get(page.url)
+                    .success(function(data) {
+                        $scope.pages.push({
+                            title: page.url,
+                            url: page.url,
+                            content: data,
+                            description: page.description
+                        });
+                    });
+            });
+        });
+
+        // examples: 
+        app.controller('MsgCtrl', function($scope) {
+            $scope.message = 'Mensagem do escopo';
+        });
+
+        app.controller('AliasCtrl', function() {
+            this.msg = 'Mensagem do escopo com alias';
+        });
+
+        app.controller('ClickCtrl', function($scope) {
+            $scope.onClick = function() {
+                alert('ok');
+            };
+        });
+
+        app.controller('ChangeCtrl', function($scope) {
+            $scope.option = '1';
+
+            $scope.onChange = function() {
+                alert($scope.option);
+            };
+        });
+
+        app.controller('ItemsCtrl', function($scope) {
+            $scope.items = [
+                {title: 'Item 1'},
+                {title: 'Item 2'},
+                {title: 'Item 3'}
+            ];
+
+            $scope.addItem = function() {
+                $scope.items.push({title: $scope.title});
+                $scope.title = '';
+            };
+        });
+    })();
+    </script>
+</body>
+</html>

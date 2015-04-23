@@ -1,0 +1,14 @@
+<script>
+var sample1 = angular.module('app');
+
+sample1.controller('ClickCtrl', function($scope) {
+    $scope.onClick = function() {
+        alert('ok');
+    };
+});
+</script>
+
+<div ng-controller="ClickCtrl">
+    Clique no botão para executar a função: 
+    <button type="button" class="btn btn-default" ng-click="onClick()">Executar função!</button>
+</div>
