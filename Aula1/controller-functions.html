@@ -1,0 +1,17 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('FunctionCtrl', function($scope) {
+    $scope.month = function() {
+        return new Date().getMonth() + 1;
+    };
+
+    $scope.year = function() {
+        return new Date().getUTCFullYear();
+    };
+});
+</script>
+
+<div ng-controller="FunctionCtrl">
+    <p>Estamos no mês {{ month() }} de {{ year() }}</p>
+</div>

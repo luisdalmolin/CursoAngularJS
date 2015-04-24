@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+        .finalized {
+            text-decoration: line-through !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1>To-do app</h1>
+            <p>A partir deste template, crie um to-do list básico. É preciso poder inserir novos itens, assim como marcar eles como completados.</p>
+        </div>
+
+        <p class="bg-primary" style="padding: 15px">Dicas: <code>ng-repeat</code>, <code>ng-model</code>, <code>ng-click</code>, <code>ng-class</code></p>
+
+        <hr>
+    
+        <div ng-controller="TodoCtrl">
+            <div class="row">
+                <div class="col-sm-11"><input type="text" class="form-control" placeholder="Adicionar tarefa..."></div>
+                <div class="col-sm-1"><button class="btn btn-block btn-primary">Inserir</button></div>
+            </div>
+
+            <br>
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label>
+                        <input type="checkbox">
+                        Item 1
+                    </label>
+                </li>
+
+                <li class="list-group-item">
+                    <label class="finalized">
+                        <input type="checkbox" checked>
+                        Item 2
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script>
+    var app = angular.module('todo', []);
+
+    app.controller('TodoCtrl', function($scope) {
+        // pra começar, crie uma lista de itens
+        // cada item deve ser ser um objeto parecido com: {title: 'Titulo do item', finalized: true} // true ou false pro finalized
+    });
+    </script>
+</body>
+</html>

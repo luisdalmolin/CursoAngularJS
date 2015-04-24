@@ -39,9 +39,10 @@
             $scope.pages = [];
             
             var pages = [
-                {url: 'controllers-model.html', description: 'Funcionalidade básica de um controller'},
-                {url: 'controllers-click.html', description: 'ng-click'},
-                {url: 'controllers-change.html', description: 'ng-change'},
+                {url: 'controller-functions.html', description: 'Exemplo de uma função dentro do escopo de um controller'},
+                {url: 'controller-model.html', description: 'Funcionalidade básica de um controller'},
+                {url: 'controller-click.html', description: 'ng-click'},
+                {url: 'controller-change.html', description: 'ng-change'},
                 {url: 'controller-alias.html', description: 'Funcionalidade básica de um controller (com alias)'},
                 {url: 'controller-items-add.html', description: 'ng-repeat adicionando novos items'}
             ];
@@ -66,29 +67,40 @@
         });
 
         // examples: 
-        app.controller('MsgCtrl', function($scope) {
-            $scope.message = 'Mensagem do escopo';
-        });
+        app
+        .controller('FunctionCtrl', function($scope) {
+            $scope.month = function() {
+                return new Date().getMonth() + 1;
+            };
 
-        app.controller('AliasCtrl', function() {
+            $scope.year = function() {
+                return new Date().getUTCFullYear();
+            };
+        })
+
+        .controller('MsgCtrl', function($scope) {
+            $scope.message = 'Sou uma mensagem de dentro do escopo';
+        })
+
+        .controller('AliasCtrl', function() {
             this.msg = 'Mensagem do escopo com alias';
-        });
+        })
 
-        app.controller('ClickCtrl', function($scope) {
+        .controller('ClickCtrl', function($scope) {
             $scope.onClick = function() {
                 alert('ok');
             };
-        });
+        })
 
-        app.controller('ChangeCtrl', function($scope) {
+        .controller('ChangeCtrl', function($scope) {
             $scope.option = '1';
 
             $scope.onChange = function() {
                 alert($scope.option);
             };
-        });
+        })
 
-        app.controller('ItemsCtrl', function($scope) {
+        .controller('ItemsCtrl', function($scope) {
             $scope.items = [
                 {title: 'Item 1'},
                 {title: 'Item 2'},

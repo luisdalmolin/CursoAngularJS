@@ -2,10 +2,12 @@
 var sample = angular.module('app');
 
 sample.controller('MsgCtrl', function($scope) {
-    $scope.message = 'Mensagem do escopo';
+    $scope.message = 'Sou uma mensagem de dentro do escopo';
 });
 </script>
 
+<p>Fora do escopo: {{ message }}</p>
+
 <div ng-controller="MsgCtrl">
-    <p>{{ message }}</p>
+    <p>Dentro do escopo: {{ message }}</p>
 </div>
