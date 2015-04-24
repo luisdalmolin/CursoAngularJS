@@ -44,7 +44,9 @@
                 {url: 'controller-click.html', description: 'ng-click'},
                 {url: 'controller-change.html', description: 'ng-change'},
                 {url: 'controller-alias.html', description: 'Funcionalidade básica de um controller (com alias)'},
-                {url: 'controller-items-add.html', description: 'ng-repeat adicionando novos items'}
+                {url: 'controller-items-add.html', description: 'ng-repeat adicionando novos items'},
+                {url: 'controller-children.html', description: 'Controller pai e controller filho. Preste atenção em como o escopo age aqui.'},
+                {url: 'controller-math.html', description: 'Quando qualquer variável do escopo é alterada, o Angular sabe o que precisa fazer'}
             ];
 
             angular.forEach(pages, function(page) {
@@ -111,6 +113,25 @@
                 $scope.items.push({title: $scope.title});
                 $scope.title = '';
             };
+        })
+
+        .controller('FirstCtrl', function($scope) {
+            $scope.message = 'Mensagem do controller 1';
+        })
+
+        .controller('SecondCtrl', function($scope) {
+            $scope.message = 'Mensagem do controller 2';
+        })
+
+        .controller('AdditionController', function($scope) {
+            $scope.operand1 = 0;
+            $scope.operand2 = 0;
+
+            $scope.add = function() {
+                return $scope.operand1 + $scope.operand2;
+            }
+
+            $scope.options = [0, 1, 2, 3, 4];
         });
     })();
     </script>

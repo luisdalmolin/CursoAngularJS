@@ -1,0 +1,20 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('AdditionController', function($scope) {
+    $scope.operand1 = 0;
+    $scope.operand2 = 0;
+
+    $scope.add = function() {
+        return $scope.operand1 + $scope.operand2;
+    }
+
+    $scope.options = [0, 1, 2, 3, 4];
+});
+</script>
+
+<div ng-controller="AdditionController">
+    <select ng-model="operand1" ng-options="x for x in options"></select>
+    + <select ng-model="operand2" ng-options="x for x in options"></select>
+    = {{add()}}
+</div>
