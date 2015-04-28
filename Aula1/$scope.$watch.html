@@ -41,7 +41,8 @@
             $scope.pages = [];
             
             var pages = [
-                {url: '$scope.$watch-1.html', description: 'Exemplo básico do funcionamento do $scope.$watch'}
+                {url: '$scope.$watch-1.html', description: 'Exemplo básico do funcionamento do $scope.$watch (Abra o console)'},
+                {url: '$scope.$watch-password.html', description: 'Exemplo do $scope.$watch com uma senha'}
             ];
 
             angular.forEach(pages, function(page) {
@@ -72,11 +73,23 @@
             ];
 
             $scope.$watch('client_id', function(client_id, old_client_id) {
-                if (old_client_id === client_id) {
+                console.log(client_id, old_client_id);
+            });
+        });
+
+        app.controller('ScopeWatch2Ctrl', function($scope) {
+            $scope.error = false;
+
+            function hasNumbers(password) {
+                return /[0-9]/.test(password);
+            }
+
+            $scope.$watch('password', function(password, old_password) {
+                if (old_password === undefined) {
                     return;
                 }
 
-                alert(client_id);
+                $scope.error = ! hasNumbers(password);
             });
         });
     })();

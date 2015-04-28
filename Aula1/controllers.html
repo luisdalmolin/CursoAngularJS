@@ -45,7 +45,8 @@
                 {url: 'controller-change.html', description: 'ng-change'},
                 {url: 'controller-alias.html', description: 'Funcionalidade básica de um controller (com alias)'},
                 {url: 'controller-items-add.html', description: 'ng-repeat adicionando novos items'},
-                {url: 'controller-children.html', description: 'Controller pai e controller filho. Preste atenção em como o escopo age aqui.'},
+                {url: 'controller-children.html', description: 'Controller pai e controller filho. Exemplo básico de herança entre controllers.'},
+                {url: 'controller-children-2.html', description: 'Controller pai e controller filho. Preste atenção em como o escopo age aqui.'},
                 {url: 'controller-math.html', description: 'Quando qualquer variável do escopo é alterada, o Angular sabe o que precisa fazer'}
             ];
 
@@ -121,6 +122,14 @@
 
         .controller('SecondCtrl', function($scope) {
             $scope.message = 'Mensagem do controller 2';
+        })
+
+        .controller('Children1Ctrl1', function($scope) {
+            $scope.message = 'Mensagem do controller 1';
+        })
+
+        .controller('Children1Ctrl2', function($scope) {
+            
         })
 
         .controller('AdditionController', function($scope) {

@@ -1,19 +1,19 @@
 <script>
 var sample = angular.module('app');
 
-sample.controller('FirstCtrl', function($scope) {
+sample.controller('Children1Ctrl1', function($scope) {
     $scope.message = 'Mensagem do controller 1';
 });
 
-sample.controller('SecondCtrl', function($scope) {
-    $scope.message = 'Mensagem do controller 2';
+sample.controller('Children1Ctrl2', function($scope) {
+    
 });
 </script>
 
-<div ng-controller="FirstCtrl">
+<div ng-controller="Children1Ctrl1">
     <p>Mensagem: {{ message }}</p>
 
-    <div ng-controller="SecondCtrl">
+    <div ng-controller="Children1Ctrl2">
         <p>Mensagem: {{ message }}</p>
     </div>
 </div>

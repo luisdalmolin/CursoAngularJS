@@ -1,0 +1,19 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('FirstCtrl', function($scope) {
+    $scope.message = 'Mensagem do controller 1';
+});
+
+sample.controller('SecondCtrl', function($scope) {
+    $scope.message = 'Mensagem do controller 2';
+});
+</script>
+
+<div ng-controller="FirstCtrl">
+    <p>Mensagem: {{ message }}</p>
+
+    <div ng-controller="SecondCtrl">
+        <p>Mensagem: {{ message }}</p>
+    </div>
+</div>

@@ -10,7 +10,7 @@ sample.controller('ScopeWatch1Ctrl', function($scope) {
     ];
 
     $scope.$watch('client_id', function(client_id, old_client_id) {
-        alert(client_id);
+        console.log(client_id, old_client_id);
     });
 });
 </script>
