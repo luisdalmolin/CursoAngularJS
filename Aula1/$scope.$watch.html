@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS - $scope.$watch</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/default.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1>$scope.$watch</h1>
+            <p>Exemplos de utilização do <code>$scope.$watch</code></p>
+        </div>
+        
+        <div ng-controller="MainCtrl as main">
+            <div ng-repeat="page in pages" class="panel panel-info">
+                <div class="panel-heading">{{ page.title }}</div>
+
+                <div class="panel-body">
+                    <p>{{ page.description }}</p>
+                    <pre><code class="html" ng-bind="page.content | unsafe" language="html"></code></pre>
+                    <!-- <ng-prism class="language-html" ng-bind="page.content | unsafe"></ng-prism> -->
+
+                    <div style="margin: 25px 0 0 0; padding: 0 0 0 30px; border-left: 6px solid #337ab7; font-size: 1.5em;" ng-include src="page.url"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script src="../assets/js/code.js"></script>
+    <script>
+    (function() {
+        var app = angular.module('app', ['code']);
+
+        app.controller('MainCtrl', function($scope, $http) {
+            $scope.pages = [];
+            
+            var pages = [
+                {url: '$scope.$watch-1.html', description: 'Exemplo básico do funcionamento do $scope.$watch'}
+            ];
+
+            angular.forEach(pages, function(page) {
+                $http.get(page.url)
+                    .success(function(data) {
+                        $scope.pages.push({
+                            title: page.url,
+                            url: page.url,
+                            content: data,
+                            description: page.description
+                        });
+
+                        window.setTimeout(function() {
+                            $('pre code').each(function(i, block) {
+                                hljs.highlightBlock(block);
+                            });
+                        }, 50);
+                    });
+            });
+        });
+
+        app.controller('ScopeWatch1Ctrl', function($scope) {
+            $scope.client_id = 1;
+            $scope.clients   = [
+                {id: 1, name: 'Nasa'},
+                {id: 2, name: 'Google'},
+                {id: 3, name: 'Apple'}
+            ];
+
+            $scope.$watch('client_id', function(client_id, old_client_id) {
+                if (old_client_id === client_id) {
+                    return;
+                }
+
+                alert(client_id);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

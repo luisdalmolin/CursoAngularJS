@@ -1,8 +1,10 @@
-<script>
+<noscript>
+var sample = angular.module('app');
+
 sample.controller('AliasCtrl', function() {
-    // this.msg = 'Mensagem do escopo';
+    this.msg = 'Mensagem do escopo';
 });
-</script>
+</noscript>
 
 <div ng-controller="AliasCtrl as alias">
     <p>{{ alias.msg }}</p>

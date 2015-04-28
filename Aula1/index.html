@@ -8,12 +8,13 @@
 </head>
 <body>
     <div class="container" ng-controller="MainCtrl">
-    	<div class="page-header">
-	        <h1>AngularJS - Aula 1 <small>Exemplos mostrados em aula em funcionamento.</small></h1>
+    	<div class="jumbotron">
+	        <h1>AngularJS - Aula 1<br>
+	        <small>Introdução ao AngularJS.</small></h1>
 	    </div>
 
 	    <div class="list-group">
-			<a href="{{ link }}" class="list-group-item" ng-repeat="item in items">
+			<a href="{{ item.link }}" class="list-group-item" ng-repeat="item in items" target="_blanl">
 				{{ item.title }}
 			</a>
 		</div>
@@ -25,10 +26,10 @@
 
 	app.controller('MainCtrl', function($scope) {
 		$scope.items = [
-			{title: 'Expressão básica (1 + 1)', link: 'expressions.html'},
-			{title: 'ng-model', link: 'ng-model.html'},
-			{title: 'ng-repeat', link: 'ng-repeat.html'},
-			{title: 'ng-show', link: 'ng-show.html'}
+			{title: 'Exemplos de diretivas básicas', link: 'diretivas.html'},
+			{title: 'Exemplos de controllers básicos', link: 'controllers.html'},
+			{title: 'Boilerplate pro to-do app', link: 'todo.html'},
+			{title: 'Exemplos de uso do $scope.$watch', link: '$scope.$watch.html'}
 		];
 	});
 	</script>

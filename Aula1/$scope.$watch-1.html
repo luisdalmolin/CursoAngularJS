@@ -1,0 +1,20 @@
+<script>
+var sample = angular.module('app');
+
+sample.controller('ScopeWatch1Ctrl', function($scope) {
+    $scope.client_id = 1;
+    $scope.clients   = [
+        {id: 1, name: 'Nasa'},
+        {id: 2, name: 'Google'},
+        {id: 3, name: 'Apple'}
+    ];
+
+    $scope.$watch('client_id', function(client_id, old_client_id) {
+        alert(client_id);
+    });
+});
+</script>
+
+<div ng-controller="ScopeWatch1Ctrl">
+    <select ng-model="client_id" ng-options="client.id as client.name for client in clients"></select>
+</div>
