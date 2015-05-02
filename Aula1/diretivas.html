@@ -41,13 +41,13 @@
 			$scope.pages = [];
 			
 			var pages = [
-				{url: 'expression.html', description: 'Expressões básicas'},
-				{url: 'ng-show.html', description: 'Diretivas ng-show e ng-if'},
-				{url: 'ng-model.html', description: 'Diretiva ng-model'},
-				{url: 'checkbox.html', description: 'Diretivas ng-bind e ng-init'},
-				{url: 'select.html', description: 'Diretivas ng-bind, '},
-				{url: 'ng-repeat.html', description: 'Diretiva ng-repeat'},
-				{url: 'ng-class.html', description: 'Diretiva ng-class'}
+				{url: 'expression.html', description: 'Expressões básicas do Angular JS. Aqui, nenhuma diretiva do AngularJS foi utilizada ainda.'},
+				{url: 'checkbox.html', description: 'Diretivas ng-bind e ng-init. Também é feito o uso das diretivas ng-true-value e ng-false-value. Sem declarar elas, os valores padrões são true ou false.'},
+				{url: 'select.html', description: 'Diretivas ng-bind e ng-init utilizadas com um HTML select.'},
+				{url: 'ng-class.html', description: 'Diretiva ng-class'},
+				{url: 'ng-show.html', description: 'Diretivas ng-show, ng-hide e ng-if. Também foi utilizado o ng-click para manipulação do evento de clique no botão.'},
+				{url: 'ng-model.html', description: 'Diretiva ng-model. Com o ng-model, é criado uma propriedade (name) dentro do escopo atual.'},
+				{url: 'ng-repeat.html', description: 'Diretiva ng-repeat. O ng-repeat funciona como um foreach, on a cada elemento do array em questão, o bloco de código será criado com as informações específicas de cada elemento.'}
 			];
 
 			angular.forEach(pages, function(page) {

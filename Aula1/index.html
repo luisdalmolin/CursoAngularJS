@@ -9,12 +9,16 @@
 <body>
     <div class="container" ng-controller="MainCtrl">
     	<div class="jumbotron">
-	        <h1>AngularJS - Aula 1<br>
-	        <small>Introdução ao AngularJS.</small></h1>
+	        <h1 style="line-height: .8em;">AngularJS - Aula 1<br>
+	        <small><small>Introdução ao AngularJS.</small></small></h1><br>
+
+	        <p>Nos exemplos mostrados, vamos mostrar o código, e logo abaixo, o resultado gerado 
+	        pela execução do código acima.</p>
 	    </div>
 
 	    <div class="list-group">
-			<a href="{{ item.link }}" class="list-group-item" ng-repeat="item in items" target="_blanl">
+			<a href="{{ item.link }}" class="list-group-item" ng-repeat="item in items" target="_blank">
+				<span class="glyphicon glyphicon-chevron-right"></span> &nbsp;
 				{{ item.title }}
 			</a>
 		</div>
