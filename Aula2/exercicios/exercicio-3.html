@@ -44,7 +44,7 @@
                     <tr ng-repeat="task in tasks | filter:search | orderBy:'task.title'">
                         <td align="center"><input type="checkbox" ng-checked="task.finalized" ng-click="setFinalized(task)"></td>
                         <td ng-class="{'finalized': task.finalized}">{{ task.title }}</td>
-                        <td>{{ task.created_at | date:'d/M/yyyy' }}</td>
+                        <td>{{ task.created_at | date:'dd/MM/yyyy HH:mm' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -64,7 +64,7 @@
             console.log(task);
         });
 
-        $http.get('http://luisdalmolin.com.br/CursoAngularJS/Aula2/tasks.json')
+        $http.get('http://luisdalmolin.com.br/CursoAngularJS/Aula2/exercicios/tasks.json')
              .success(function(tasks) {
                 $scope.tasks = tasks;
              });
