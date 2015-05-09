@@ -41,10 +41,10 @@
                     <th>Criada em</th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="task in tasks | filter:search | orderBy:'task.title'">
+                    <tr ng-repeat="task in tasks | filter:search | orderBy:'created_at'">
                         <td align="center"><input type="checkbox" ng-checked="task.finalized" ng-click="setFinalized(task)"></td>
                         <td ng-class="{'finalized': task.finalized}">{{ task.title }}</td>
-                        <td>{{ task.created_at | date:'dd/MM/yyyy HH:mm' }}</td>
+                        <td>{{ task.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -55,7 +55,7 @@
     <script>
     var app = angular.module('todo', []);
 
-    app.controller('TodoCtrl', function($scope, $http) {
+    app.controller('TodoCtrl', function($scope) {
         $scope.$on('task.created', function(e, task) {
             $scope.title = '';
         });
@@ -64,10 +64,12 @@
             console.log(task);
         });
 
-        $http.get('http://luisdalmolin.com.br/CursoAngularJS/Aula2/exercicios/tasks.json')
-             .success(function(tasks) {
-                $scope.tasks = tasks;
-             });
+        // isto aqui precisa vir do service $http
+        $scope.tasks = [
+            {title: 'Todo app - Exercício 1', finalized: true, created_at: new Date().getTime()},
+            {title: 'Todo app - Eventos', finalized: true, created_at: new Date().getTime()},
+            {title: 'Todo app - Filtros', finalized: true, created_at: new Date().getTime()}
+        ];
 
         $scope.setFinalized = function(task) {
             task.finalized = ! task.finalized;

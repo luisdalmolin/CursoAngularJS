@@ -31,19 +31,20 @@
                 </form>
             </div>
 
-            <br>
-
+            <hr>
+            
+            <input type="text" ng-model="search" placeholder="Digite para filtrar tarefas..." class="form-control">
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <th width="5%"></th>
                     <th>Tarefa</th>
-                    <th></th>
+                    <th>Criada em</th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="task in tasks">
+                    <tr ng-repeat="task in tasks | filter:search | orderBy:'created_at'">
                         <td align="center"><input type="checkbox" ng-checked="task.finalized" ng-click="setFinalized(task)"></td>
                         <td ng-class="{'finalized': task.finalized}">{{ task.title }}</td>
-                        <td></td>
+                        <td>{{ task.created_at | date:'dd/MM/yyyy HH:mm' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -54,7 +55,7 @@
     <script>
     var app = angular.module('todo', []);
 
-    app.controller('TodoCtrl', function($scope) {
+    app.controller('TodoCtrl', function($scope, $http) {
         $scope.$on('task.created', function(e, task) {
             $scope.title = '';
         });
@@ -63,11 +64,10 @@
             console.log(task);
         });
 
-        $scope.tasks = [
-            {title: 'Tarefa 1', finalized: true},
-            {title: 'Tarefa 2', finalized: false}
-        ];
-        // new Date().getTime()
+        $http.get('http://luisdalmolin.com.br/CursoAngularJS/Aula2/exercicios/tasks.json')
+             .success(function(tasks) {
+                $scope.tasks = tasks;
+             });
 
         $scope.setFinalized = function(task) {
             task.finalized = ! task.finalized;
@@ -78,7 +78,12 @@
         };
 
         $scope.addTask = function() {
-            var task = {title: $scope.title, finalized: false};
+            var task = {
+                title: $scope.title, 
+                finalized: false,
+                created_at: new Date().getTime()
+            };
+
             $scope.tasks.push(task);
             $scope.$emit('task.created', task);
         };
