@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todo">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS - Todo App</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <style>
+        .finalized {
+            text-decoration: line-through !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1>To-do app</h1>
+        </div>
+
+        <hr>
+    
+        <div ng-controller="TodoCtrl">
+            <div class="row">
+                <form ng-submit="addItem()">
+                    <div class="col-sm-11"><input type="text" class="form-control" placeholder="Adicionar tarefa..." ng-model="title" required></div>
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-block btn-primary">
+                            Inserir
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <br>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in items">
+                    <label ng-class="{'finalized': item.finalized}">
+                        <input type="checkbox" ng-checked="item.finalized" 
+                        ng-click="setFinalized(item)">
+                        {{ item.title }}
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script>
+    var app = angular.module('todo', []);
+
+    app.controller('TodoCtrl', function($scope) {
+        $scope.items = [
+            {title: 'Item 3', finalized: true},
+            {title: 'Item 4', finalized: false}
+        ];
+
+        $scope.setFinalized = function(item) {
+            item.finalized = ! item.finalized;
+        };
+
+        $scope.addItem = function() {
+            $scope.items.push({
+                title: $scope.title, 
+                finalized: false
+            });
+
+            $scope.title = '';
+        };
+    });
+    </script>
+</body>
+</html>
