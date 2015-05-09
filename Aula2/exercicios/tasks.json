@@ -2,24 +2,24 @@
     {
         "title": "Todo-app - Exercício 1", 
         "finalized": true, 
-        "created_at": 1431197821929
+        "created_at": 1430946000
     },
 
     {
         "title": "Todo-app - Adicionar eventos", 
         "finalized": true, 
-        "created_at": 1431197821929
+        "created_at": 1431544500
     },
 
     {
         "title": "Todo-app - Adicionar filtros", 
         "finalized": true, 
-        "created_at": 1431197821929
+        "created_at": 1431548100
     },
 
     {
         "title": "Todo-app - Buscar tarefas do servidor", 
         "finalized": false, 
-        "date": "Sat May 13 2015 21:15:00 GMT-0300 (BRT)"
+        "created_at": 1431551700
     }
 ]
