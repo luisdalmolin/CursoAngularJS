@@ -55,6 +55,14 @@
     var app = angular.module('todo', []);
 
     app.controller('TodoCtrl', function($scope) {
+        $scope.$on('task.created', function(e, task) {
+            $scope.title = '';
+        });
+
+        $scope.$on('task.finalized', function(e, task) {
+            console.log(task);
+        });
+
         $scope.tasks = [
             {title: 'Tarefa 1', finalized: true},
             {title: 'Tarefa 2', finalized: false}
@@ -62,15 +70,16 @@
 
         $scope.setFinalized = function(task) {
             task.finalized = ! task.finalized;
+
+            if (task.finalized) {
+                $scope.$emit('task.finalized', task);
+            }            
         };
 
         $scope.addTask = function() {
-            $scope.tasks.push({
-                title: $scope.title, 
-                finalized: false
-            });
-
-            $scope.title = '';
+            var task = {title: $scope.title, finalized: false};
+            $scope.tasks.push(task);
+            $scope.$emit('task.created', task);
         };
     });
     </script>
