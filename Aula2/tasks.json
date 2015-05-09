@@ -1,0 +1,25 @@
+[
+    {
+        "title": "Todo-app - Exercício 1", 
+        "finalized": true, 
+        "date": "Sat May 06 2015 19:15:00 GMT-0300 (BRT)"
+    },
+
+    {
+        "title": "Todo-app - Adicionar eventos", 
+        "finalized": true, 
+        "date": "Sat May 13 2015 19:15:00 GMT-0300 (BRT)"
+    },
+
+    {
+        "title": "Todo-app - Adicionar filtros", 
+        "finalized": true, 
+        "date": "Sat May 13 2015 20:15:00 GMT-0300 (BRT)"
+    },
+
+    {
+        "title": "Todo-app - Buscar tarefas do servidor", 
+        "finalized": false, 
+        "date": "Sat May 13 2015 21:15:00 GMT-0300 (BRT)"
+    }
+]
