@@ -1,6 +1,7 @@
 {
   "name": "Curso-AngularJS-Feevale",
   "dependencies": {
-    "angular": "~1.3.15"
+    "angular": "~1.3.15",
+    "angular-gist-embed": "~0.0.3"
   }
 }
