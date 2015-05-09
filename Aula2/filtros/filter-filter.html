@@ -1,0 +1,9 @@
+<div ng-init="items = ['Item 4', 'Item 3', 'Item 1', 'Item 2']">
+    <input type="text" ng-model="query" placeholder="Filtrar items">
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in items | filter:query | orderBy:item">
+            {{ item }}
+        </li>
+    </ul>
+</div>

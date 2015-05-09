@@ -1,0 +1,11 @@
+<script>
+var app = angular.module('app', []);
+
+app.controller('FilterDateCtrl', function($scope) {
+    $scope.now = new Date();
+});
+</script>
+
+<div ng-controller="FilterDateCtrl">
+    {{ now | date:'d/M/yyyy' }}
+</div>
