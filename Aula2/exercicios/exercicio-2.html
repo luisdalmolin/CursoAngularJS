@@ -32,7 +32,7 @@
             </div>
 
             <br>
-
+            <input type="text" class="form-control" ng-model="search">
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <th width="5%"></th>
@@ -40,10 +40,10 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="task in tasks">
+                    <tr ng-repeat="task in tasks | filter:search | orderBy: '-created_at'">
                         <td align="center"><input type="checkbox" ng-checked="task.finalized" ng-click="setFinalized(task)"></td>
                         <td ng-class="{'finalized': task.finalized}">{{ task.title }}</td>
-                        <td></td>
+                        <td>{{ task.created_at | date:'d/M/yyyy HH:mm:ss' }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -64,10 +64,17 @@
         });
 
         $scope.tasks = [
-            {title: 'Tarefa 1', finalized: true},
-            {title: 'Tarefa 2', finalized: false}
+            {
+                title: 'Tarefa 1', 
+                finalized: true, 
+                created_at: new Date().getTime()
+            },
+            {
+                title: 'Tarefa 2', 
+                finalized: false,
+                created_at: new Date().getTime()
+            }
         ];
-        // new Date().getTime()
 
         $scope.setFinalized = function(task) {
             task.finalized = ! task.finalized;
@@ -78,7 +85,12 @@
         };
 
         $scope.addTask = function() {
-            var task = {title: $scope.title, finalized: false};
+            var task = {
+                title: $scope.title, 
+                finalized: false,
+                created_at: new Date().getTime()
+            };
+
             $scope.tasks.push(task);
             $scope.$emit('task.created', task);
         };

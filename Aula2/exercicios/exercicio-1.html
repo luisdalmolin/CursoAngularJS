@@ -62,16 +62,30 @@
 
         $scope.setFinalized = function(task) {
             task.finalized = ! task.finalized;
+
+            if (task.finalized === true) {
+                $scope.$emit('task.finalized', task);
+            }
         };
 
         $scope.addTask = function() {
-            $scope.tasks.push({
+            var task = {
                 title: $scope.title, 
                 finalized: false
-            });
+            };
 
-            $scope.title = '';
+            $scope.tasks.push(task);
+            $scope.$emit('task.created', task);
         };
+
+        $scope.$on('task.created', function(e, task) {
+            console.log(task);
+            $scope.title = '';
+        });
+
+        $scope.$on('task.finalized', function(e, task) {
+            console.log(task);
+        });
     });
     </script>
 </body>

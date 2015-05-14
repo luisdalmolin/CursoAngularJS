@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS - $scope.$emit</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="page-header row">
+            <h1 class="col-sm-6">AngularJS events <small>$scope.$emit</small></h1>
+            
+            <div class="col-sm-6">
+                <a href="$broadcast.html" class="btn btn-primary pull-right" style="margin: 25px 0 0 0;">
+                    $scope.$broadcast &nbsp; <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
+            </div>
+        </div>
+
+        <div data-gist-id="b5161a8da8555245a7ea"></div>
+            
+        <div ng-controller="ParentCtrl">
+            <div style="margin: 25px 0 0 0; padding: 0 0 0 30px; border-left: 6px solid #337ab7; font-size: 1.5em;">
+                Abra o console para visualizar o resultado.
+            </div>
+            
+            <div ng-controller="ChildrenCtrl"></div>
+        </div>
+    </div>
+    <br><br>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <script src="../../bower_components/angular-gist-embed/dist/angular-gist-embed.min.js"></script>
+    <script>
+    var app = angular.module('app', ['gist-embed']);
+
+    app.controller('ParentCtrl', function($scope, $rootScope) {
+        $rootScope.$on('event', function(e, params) {
+            console.log('$rootScope', params);
+        });
+
+        $scope.$on('event', function(e, params) {
+            console.log('$scope', params);
+
+            // se isto aqui for descomentado, o $rootScope NUNCA vai receber este evento
+            // e.stopPropagation();
+        });
+    });
+
+        app.controller('ChildrenCtrl', function($scope) {
+            $scope.$emit('event', {
+                id: 1
+            });
+        });
+    </script>
+</body>
+</html>
