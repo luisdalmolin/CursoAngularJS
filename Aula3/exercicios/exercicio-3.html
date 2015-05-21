@@ -96,9 +96,9 @@
             var deferred = $q.defer();
 
             $http.get('http://luisdalmolin.com.br/CursoAngularJS/Aula3/exercicios/tasks.json').then(
-                function(tasks) {
-                    console.log(tasks);
-                    return deferred.resolve(tasks.data);
+                function(result) {
+                    console.log(result.config);
+                    return deferred.resolve(result.data);
                 },
 
                 function(error) {

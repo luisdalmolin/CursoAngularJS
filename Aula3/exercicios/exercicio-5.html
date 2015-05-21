@@ -32,8 +32,8 @@
                         <th width="5%"></th>
                     </thead>
                     <tbody>
-                        <tr task ng-repeat="task in tasks | filter:search | orderBy:'-created_at'">
-                        </tr>
+                        <task ng-repeat="task in tasks | filter:search | orderBy:'-created_at'">
+                        </task>
                     </tbody>
                     <tfoot>
                         <tr>
