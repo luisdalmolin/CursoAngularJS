@@ -2,7 +2,7 @@
 
 var gulp    = require('gulp');
 var connect = require('gulp-connect');
-var files   = ['Aula1/**/*', 'Aula2/**/*', 'Aula3/**/*', 'Aula4/**/*', 'Aula5/**/*', 'playground.html'];
+var files   = ['Aula1/**/*', 'Aula2/**/*', 'Aula3/**/*', 'Aula4/**/*', 'playground.html'];
 
 gulp.task('files', function() {
   gulp.src(files).pipe(connect.reload());

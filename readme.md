@@ -7,6 +7,7 @@ Este repositório contém os exemplos e os exercícios utilizados durante o curs
 * [Aula 1](https://github.com/luisdalmolin/CursoAngularJS/tree/gh-pages/Aula1)
 * [Aula 2](https://github.com/luisdalmolin/CursoAngularJS/tree/gh-pages/Aula2)
 * [Aula 3](https://github.com/luisdalmolin/CursoAngularJS/tree/gh-pages/Aula3)
+* [Aula 4](https://github.com/luisdalmolin/CursoAngularJS/tree/gh-pages/Aula4)
 
 ### Dúvidas e contato
 
