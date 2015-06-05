@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS - Aula 5 - Exercício 1</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="page-header">
+            <h1>Exercício 1 <small>Aula 5</small></h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4" ui-view>
+
+            </div>
+
+            <div class="col-sm-4" ui-view="details">
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="home.html">
+        <div class="list-group">
+            <a href="#" ng-repeat="user in users" ui-sref="home.show({username: user})" class="list-group-item">{{ user }}</a>
+        </div>
+
+        <input class="form-control" ng-model="username" placeholder="Adicionar usuário...">
+        <button ng-click="add()" class="btn btn-primary btn-block">Adicionar usuário!</a>
+    </script>
+
+    <script type="text/ng-template" id="show.html">
+        <user username="username"></user>
+    </script>
+
+    <script type="text/ng-template" id="user.html">
+        <div>
+            <div class="progress" ng-hide="user">
+                <div class="progress-bar progress-bar-striped active" style="width: 100%">
+                </div>
+            </div>
+
+            <div class="thumbnail" ng-show="user">
+                <img src="{{ user.avatar_url }}" alt="...">
+
+                <div class="caption">
+                    <h3>{{ user.name }}</h3>
+                    <p>Seguidores: {{ user.followers }}</p>
+                    <p><a href="{{ user.html_url }}" class="btn btn-primary" target="_blank">Ver perfil</a></p>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script>
+    var app = angular.module('app', ['ui.router', 'ngResource'])
+
+    .constant('CONFIG', {
+        GITHUB_ENDPOINT: 'https://api.github.com'
+    })
+    .config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: 'home.html',
+                controller: 'HomeCtrl'
+            })
+                .state('home.show', {
+                    url: '/:username',
+                    views: {
+                        'details@': {
+                            templateUrl: 'show.html',
+                            controller: 'ShowCtrl'
+                        }
+                    }
+                })
+    })
+    .service('GithubUser', function($resource, CONFIG) {
+        return $resource(CONFIG.GITHUB_ENDPOINT + '/users/:username', {}, {
+            create: {method: 'POST', header: {'Content-Type': 'application/json;'}}
+        });
+    })
+    .controller('HomeCtrl', function($scope) {
+        $scope.users = [
+            'torvalds',
+            'mhevery',
+            'paulirish'
+        ];
+
+        $scope.add = function() {
+            $scope.users.push($scope.username);
+            $scope.username = '';
+        };
+    })
+    .controller('ShowCtrl', function($scope, $stateParams) {
+        $scope.username = $stateParams.username;
+    })
+    .directive('user', function(GithubUser) {
+        return {
+            scope: {
+                username: '='
+            },
+            replace: true,
+            link: function(scope) {
+                GithubUser.get({username: scope.username}).$promise.then(function(data) {
+                    scope.user = data;
+                });
+            },
+
+            templateUrl: 'user.html'
+        };
+    });
+    </script>
+</body>
+</html>

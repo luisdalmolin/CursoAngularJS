@@ -15,8 +15,7 @@ gulp.task('scripts', function() {
             'scripts/components/**/*.js'
         ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('.'))
-        .pipe(connect.reload());
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task('sass', function() {
@@ -28,7 +27,7 @@ gulp.task('sass', function() {
 gulp.task('watch', function() {
     gulp.start('scripts', 'sass');
 
-    gulp.watch('scripts/*.js', ['scripts']);
+    gulp.watch('scripts/**/*.js', ['scripts']);
     gulp.watch('styles/scss/**/*.scss', ['sass']);
 });
 

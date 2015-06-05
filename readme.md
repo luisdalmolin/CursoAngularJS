@@ -33,6 +33,7 @@ Grande parte das referências estão nos slides também.
 * [Aula 2](https://www.dropbox.com/s/tz6uze975lvpim0/AngularJS-Aula2.pdf?dl=0)
 * [Aula 3](https://www.dropbox.com/s/llihq06lcy0qkr3/AngularJS-Aula-3.pdf?dl=0)
 * [Aula 4](https://www.dropbox.com/s/shxk78a1mcs9vrk/AngularJS-Aula-4.pdf?dl=0)
+* [Aula 5](https://www.dropbox.com/s/j48xvudef97qujo/AnguarJS-Aula-5.pdf?dl=0)
 
 ### Dúvidas e contato
 

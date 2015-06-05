@@ -23,6 +23,8 @@ Este boilerplate contém o [AngularJS](https://angularjs.org) e o [Angular UI Ro
 
 ### Como instalar / configurar
 
+Faça o download [neste link](https://github.com/luisdalmolin/CursoAngularJS/raw/gh-pages/Aula5/boilerplate-1/boilerplate-1.zip).
+
 Você precisa ter [NodeJS](https://nodejs.org) e [Ruby](http://rubyinstaller.org) instalados.
 
 Caso você ainda não tenha instalado o [SASS](http://sass-lang.com/), o [Gulp](http://gulpjs.com/) e o [Bower](http://bower.io/) instalados globalmente, executem os seguintes comandos no terminal:
